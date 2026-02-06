@@ -1,0 +1,30 @@
+{
+  "name": "remove-empty-lines",
+  "displayName": "Remove Empty Lines",
+  "description": "Remove empty lines from selected text",
+  "version": "0.0.1",
+  "publisher": "AvinashAlla",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": [
+    "onCommand:removeEmptyLines.run"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "removeEmptyLines.run",
+        "title": "Remove Empty Lines from Selection"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "removeEmptyLines.run",
+        "key": "ctrl+alt+r",
+        "when": "editorTextFocus && editorHasSelection"
+      }
+    ]
+  }
+}

@@ -1,0 +1,173 @@
+# Remove Empty Lines (Selection) – VS Code Extension
+
+This VS Code extension removes empty lines from selected text using a keyboard shortcut.
+
+---
+
+## Prerequisites
+
+Install:
+- Node.js (LTS)
+- Visual Studio Code
+
+Open VScode 
+Open a folder with the extension name
+and create the below folder structure
+
+Expected structure:
+    remove-empty-lines
+        package.json
+        src/extension.ts
+
+---
+
+## Step 1: Add Extension Logic
+
+Open the file:
+
+    src/extension.ts
+
+Replace the entire file with:
+`
+    import * as vscode from 'vscode';
+
+    export function activate(context: vscode.ExtensionContext) {
+
+        const disposable = vscode.commands.registerCommand(
+            'remove-empty-lines.cleanSelection',
+            () => {
+
+                const editor = vscode.window.activeTextEditor;
+                if (!editor) return;
+
+                const selection = editor.selection;
+                if (selection.isEmpty) return;
+
+                const selectedText = editor.document.getText(selection);
+
+                const cleanedText = selectedText
+                    .split('\n')
+                    .filter(line => line.trim() !== '')
+                    .join('\n');
+
+                editor.edit(editBuilder => {
+                    editBuilder.replace(selection, cleanedText);
+                });
+            }
+        );
+
+        context.subscriptions.push(disposable);
+    }
+
+    export function deactivate() {}
+`
+---
+
+## Step 2: Register Command and Shortcut
+
+Open package.json and add the below:
+`
+    "contributes": {
+      "commands": [
+        {
+          "command": "remove-empty-lines.cleanSelection",
+          "title": "Remove Empty Lines (Selection)"
+        }
+      ],
+      "keybindings": [
+        {
+          "command": "remove-empty-lines.cleanSelection",
+          "key": "ctrl+alt+l",
+          "when": "editorTextFocus && editorHasSelection"
+        }
+      ]
+    }
+`
+---
+
+## Step 3: Test Locally
+
+Press:
+
+    F5
+
+Test:
+1. Open a file
+2. Select text with empty lines
+3. Press Ctrl + Alt + L
+
+---
+
+## Step 4: Create Publisher Account (One Time)
+
+1. Open Visual Studio Marketplace
+2. Sign in with Microsoft account
+3. Create a Publisher
+4. Save the Publisher ID
+
+---
+
+## Step 5: Update Metadata
+
+Edit package.json:
+
+    {
+      "name": "remove-empty-lines",
+      "displayName": "Remove Empty Lines (Selection)",
+      "description": "Removes empty lines from selected text using a keyboard shortcut",
+      "version": "0.0.1",
+      "publisher": "YOUR_PUBLISHER_ID",
+      "engines": {
+        "vscode": "^1.80.0"
+      },
+      "categories": ["Other"]
+    }
+
+---
+
+## Step 6: Login to Marketplace
+
+    vsce login YOUR_PUBLISHER_ID
+
+Create a Personal Access Token with scope:
+
+    Marketplace → Manage
+
+---
+
+## Step 7: Package Extension
+
+    vsce package
+
+Output:
+
+    remove-empty-lines-0.0.1.vsix
+
+Optional test install:
+
+    code --install-extension remove-empty-lines-0.0.1.vsix
+
+---
+
+## Step 8: Publish Extension
+
+    vsce publish
+
+---
+
+## Updating the Extension
+
+    vsce publish patch
+
+---
+
+## Mental Model
+
+- src/extension.ts → logic
+- package.json → wiring
+- F5 → development testing
+- vsce publish → marketplace release
+
+
+
+
