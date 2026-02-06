@@ -1,6 +1,7 @@
 # Remove Empty Lines
 
 Removes empty lines from selected text in VS Code.
+shortcut to press - Ctrl + Alt + R
 
 
 ## Usage
@@ -11,3 +12,4 @@ Removes empty lines from selected text in VS Code.
 ## Features
 - Works on selected text only
 - Simple and fast
+
