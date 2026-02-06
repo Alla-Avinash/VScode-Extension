@@ -1,20 +1,20 @@
 {
-  "name": "remove-empty-lines",
-  "displayName": "Remove Empty Lines",
+  "name": "remove-empty-lines-extension",
+  "displayName": "Remove Empty Lines Extension",
   "description": "Remove empty lines from selected text",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "AvinashAlla",
   "engines": {
     "vscode": "^1.85.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Alla-Avinash/VScode-Extension"
   },
   "categories": ["Other"],
   "activationEvents": [
     "onCommand:removeEmptyLines.run"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Alla-Avinash/VScode-Extension"
-  },
   "main": "./extension.js",
   "contributes": {
     "commands": [
@@ -32,5 +32,3 @@
     ]
   }
 }
-
-
