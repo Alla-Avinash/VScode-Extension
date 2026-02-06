@@ -11,6 +11,10 @@
   "activationEvents": [
     "onCommand:removeEmptyLines.run"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Alla-Avinash/VScode-Extension"
+  }
   "main": "./extension.js",
   "contributes": {
     "commands": [
@@ -28,3 +32,4 @@
     ]
   }
 }
+
